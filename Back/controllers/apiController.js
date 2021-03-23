@@ -45,14 +45,14 @@ const modifyPost = (req, res, next) => {
 
   Post.findOne({ where: { id: postId } }).then((post) => {
     if (post) {
-      Post.update(req.body, { where: { id: postId } })
+      return Post.update(req.body, { where: { id: postId } })
         .then((post) => {
           res.json({ error: false, message: "Updated successfully" });
         })
         .catch((error) => console.log(error));
     }
 
-    res.json({
+    return res.json({
       error: true,
       message: `We can not find this post, the ID: ${postId}`,
     });
@@ -65,16 +65,16 @@ const deletePost = (req, res, next) => {
   Post.findOne({ where: { id: postId } })
     .then((post) => {
       if (post) {
-        Post.destroy({ where: { id: postId } })
+        return Post.destroy({ where: { id: postId } })
           .then((howMany) => {
             res.json({ error: false, message: "Deleted successfully" });
           })
           .catch((error) => console.log(error));
       }
 
-      res.json({
+      return res.json({
         message: `We can not find this post, the ID: ${postId}`,
-        error: false,
+        error: true,
       });
     })
     .catch((error) => console.log(error));
