@@ -29,7 +29,15 @@ const getDetailedPost = (req, res, next) => {
   Post.findOne({
     where: { id: postId },
   })
-    .then((post) => res.json({ post }))
+    .then((post) => {
+      if (!post) {
+        res.json({
+          error: true,
+          message: `This post does not exists, the ID sent was ${postId}`,
+        });
+      }
+      res.json({ post });
+    })
     .catch((error) => console.log(error));
 };
 
