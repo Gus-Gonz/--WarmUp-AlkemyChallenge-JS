@@ -44,17 +44,38 @@ const modifyPost = (req, res, next) => {
   const postId = req.params.oid;
 
   Post.findOne({ where: { id: postId } }).then((post) => {
-    if (!post) {
-      res.json({
-        error: true,
-        message: `We can not find this post, the ID: ${postId}`,
-      });
+    if (post) {
+      Post.update(req.body, { where: { id: postId } })
+        .then((post) => {
+          res.json({ error: false, message: "Updated successfully" });
+        })
+        .catch((error) => console.log(error));
     }
-  });
 
-  Post.update(req.body, { where: { id: postId } })
+    res.json({
+      error: true,
+      message: `We can not find this post, the ID: ${postId}`,
+    });
+  });
+};
+
+const deletePost = (req, res, next) => {
+  const postId = req.params.oid;
+
+  Post.findOne({ where: { id: postId } })
     .then((post) => {
-      res.json({ error: false, message: "Updated successfully" });
+      if (post) {
+        Post.destroy({ where: { id: postId } })
+          .then((howMany) => {
+            res.json({ error: false, message: "Deleted successfully" });
+          })
+          .catch((error) => console.log(error));
+      }
+
+      res.json({
+        message: `We can not find this post, the ID: ${postId}`,
+        error: false,
+      });
     })
     .catch((error) => console.log(error));
 };
@@ -63,3 +84,4 @@ exports.getAllPosts = getAllPosts;
 exports.createPosts = createPosts;
 exports.getDetailedPost = getDetailedPost;
 exports.modifyPost = modifyPost;
+exports.deletePost = deletePost;
