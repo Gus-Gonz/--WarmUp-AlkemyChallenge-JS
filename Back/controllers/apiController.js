@@ -16,7 +16,13 @@ const getAllPosts = (req, res, next) => {
     });
 };
 
-const createPosts = () => console.log("POST");
+const createPosts = (req, res, next) => {
+  const { title, content, image, category } = req.body;
+
+  Post.create({ title, content, image, category, creationDate: new Date() })
+    .then((createdPost) => res.json({ created: true, createdPost }))
+    .catch((error) => console.log(error));
+};
 
 exports.getAllPosts = getAllPosts;
 exports.createPosts = createPosts;
