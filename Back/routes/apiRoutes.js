@@ -1,9 +1,10 @@
 const express = require("express");
 
+const apiController = require("../controllers/apiController");
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send({ active: true });
-});
+router.get("/", apiController.getAllPosts);
+router.post("/", apiController.createPosts);
 
 module.exports = router;
