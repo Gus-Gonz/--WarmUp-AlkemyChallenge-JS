@@ -7,17 +7,16 @@ const getAllPosts = (req, res, next) => {
     attributes: ["id", "title", "image", "category", "creationDate"],
     order: [["creationDate", "DESC"]],
   })
-    .then(
-      res.json({
-        operation,
-      })
-    )
-    .cath((error) => {
+    .then((posts) => {
+      console.log(posts);
+      return res.json({ posts });
+    })
+    .catch((error) => {
       return console.log(error);
     });
 };
 
-const createPosts;
+const createPosts = () => console.log("POST");
 
 exports.getAllPosts = getAllPosts;
 exports.createPosts = createPosts;
