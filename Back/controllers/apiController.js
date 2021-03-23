@@ -24,5 +24,15 @@ const createPosts = (req, res, next) => {
     .catch((error) => console.log(error));
 };
 
+const getDetailedPost = (req, res, next) => {
+  const postId = req.params.oid;
+  Post.findOne({
+    where: { id: postId },
+  })
+    .then((post) => res.json({ post }))
+    .catch((error) => console.log(error));
+};
+
 exports.getAllPosts = getAllPosts;
 exports.createPosts = createPosts;
+exports.getDetailedPost = getDetailedPost;
