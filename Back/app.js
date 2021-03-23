@@ -8,7 +8,7 @@ const sequelize = require("./util/dataBase");
 
 app.use(express.json());
 
-app.use("/api-warmup", apiRoutes);
+app.use("/api-warmup/posts", apiRoutes);
 
 app.listen(process.env.PORT, () => {
   sequelize
