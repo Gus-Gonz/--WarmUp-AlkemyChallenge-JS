@@ -3,15 +3,11 @@ require("dotenv").config();
 const express = require("express");
 
 const app = express();
+const apiRoutes = require("./routes/apiRoutes");
 
 app.use(express.json());
 
-// app.use("/api-warmup");
-
-app.get("/api-warmup", (req, res) => {
-  console.log("WE ARE CONECTED");
-  return res.send("WE ARE CONECTED");
-});
+app.use("/api-warmup", apiRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log("We´re connected to the database");
