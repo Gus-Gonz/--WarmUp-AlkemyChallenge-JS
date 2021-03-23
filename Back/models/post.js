@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../util/dataBase");
 
 const Post = sequelize.define(
-  "post",
+  "posts",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -12,7 +12,7 @@ const Post = sequelize.define(
       primaryKey: true,
     },
     title: Sequelize.STRING,
-    content: Sequelize.STRING,
+    content: Sequelize.TEXT,
     image: Sequelize.STRING,
     category: Sequelize.STRING,
     creationDate: Sequelize.DATEONLY,
@@ -20,7 +20,7 @@ const Post = sequelize.define(
   {
     timestamps: false,
     freezeTableName: true,
-    tableName: "post",
+    tableName: "posts",
     classMethods: {},
   }
 );
