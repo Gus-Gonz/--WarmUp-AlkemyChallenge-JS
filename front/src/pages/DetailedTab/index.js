@@ -27,6 +27,7 @@ const DetailedTabPage = (props) => {
             <IconWrapper
                 iconClickHandler={() => props.history.goBack()}
                 iconComponent={<KeyboardBackspaceIcon />}
+                text="Back"
             />
             <PostTab
                 isDetailed
