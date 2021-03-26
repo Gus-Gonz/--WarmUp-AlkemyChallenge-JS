@@ -4,6 +4,8 @@ import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 import IconWrapper from "../../components/IconWrapper";
 
+import { postSinglePost } from "../../helper/axios/axios";
+
 import {
     StyledWrapper,
     StyledTitleWrapper,
@@ -12,8 +14,8 @@ import {
 } from "./styles";
 
 const AddNewPage = (props) => {
-    const [title, setTitle] = useState({ touched: false });
-    const [content, setContent] = useState({ touched: false });
+    const [title, setTitle] = useState({ touched: false, value: "" });
+    const [content, setContent] = useState({ touched: false, value: "" });
 
     const titleChangeHandler = (event) => {
         const newValue = event.target.value.trim();
@@ -33,6 +35,18 @@ const AddNewPage = (props) => {
         setContent(newContentobj);
     };
 
+    const submitHandler = (event) => {
+        event.preventDefault();
+        if (title.value !== "" && content.value !== "") {
+            const data = { title, content };
+            postSinglePost(data).then((response) => {
+                console.log(response);
+                props.history.push("/");
+            });
+        }
+        return;
+    };
+
     return (
         <StyledWrapper>
             <IconWrapper
@@ -42,7 +56,7 @@ const AddNewPage = (props) => {
             />
             <div>
                 <h2>Let's add a new post!!</h2>
-                <form onSubmit={(event) => event.preventDefault()}>
+                <form onSubmit={(event) => submitHandler(event)}>
                     <StyledTitleWrapper>
                         <label>Title</label>
                         <input
@@ -63,7 +77,7 @@ const AddNewPage = (props) => {
                             name="content"
                         />
                     </StyledTextAreaWrapper>
-                    <StyledButton>ADD A NEW POST</StyledButton>
+                    <StyledButton type="submit">ADD A NEW POST</StyledButton>
                 </form>
             </div>
         </StyledWrapper>
