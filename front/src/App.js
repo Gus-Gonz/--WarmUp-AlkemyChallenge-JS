@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
 import DetailedTabPage from "./pages/DetailedTab";
 import AddNewPage from "./pages/AddNew";
