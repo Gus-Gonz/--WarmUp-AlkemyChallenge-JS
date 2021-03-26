@@ -28,7 +28,7 @@ const PostTab = ({
     );
 
     return (
-        <StyledTab>
+        <StyledTab isDetailed>
             <StyledTitleWrapper onClick={moreDetailsHandler}>
                 <h3>{title}</h3>
             </StyledTitleWrapper>
