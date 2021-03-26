@@ -12,6 +12,10 @@ export const StyledTab = styled.div`
   margin: 10px 5px;
 
   background-color: white;
+
+  p {
+    text-align: justify;
+  }
 `;
 
 export const StyledTitleWrapper = styled.div`
