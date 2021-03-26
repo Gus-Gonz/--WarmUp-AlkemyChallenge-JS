@@ -31,10 +31,10 @@ export const StyledButtonWrapper = styled.div`
 export const StyledButton = styled.button`
   cursor: pointer;
   height: 30px;
-  width: 35%;
+  width: ${(props) => (props.isDetailed ? "50%" : "35%")};
   border-radius: 10px;
   border-bottom-left-radius: 0px;
   border: 2px solid #ff7074;
-  background-color: ${(props) => (!props.delete ? colors.salmon : "white")};
-  color: ${(props) => (props.delete ? colors.salmon : "white")};
+  background-color: ${(props) => (props.delete ? colors.salmon : "white")};
+  color: ${(props) => (!props.delete ? colors.salmon : "white")};
 `;

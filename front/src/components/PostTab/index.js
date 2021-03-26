@@ -16,12 +16,16 @@ const PostTab = ({
   const paragrafTab = isDetailed ? <p>{paragraf}</p> : null;
   const buttons = !isDetailed ? (
     <StyledButtonWrapper>
-      <StyledButton delete={true} onClick={modifyHandler}>
-        MODIFY
+      <StyledButton onClick={modifyHandler}>MODIFY</StyledButton>
+      <StyledButton delete={true} onClick={deleteHandler}>
+        DELETE
       </StyledButton>
-      <StyledButton onClick={deleteHandler}>DELETE</StyledButton>
     </StyledButtonWrapper>
-  ) : null;
+  ) : (
+    <StyledButton isDetailed onClick={modifyHandler}>
+      MODIFY
+    </StyledButton>
+  );
 
   return (
     <StyledTab>
