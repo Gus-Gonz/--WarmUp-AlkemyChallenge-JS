@@ -1,9 +1,12 @@
 import { StyledWrapper } from "./styles";
 
-const PostTab = ({ iconComponent, iconClickHandler }) => {
-  return (
-    <StyledWrapper onClick={iconClickHandler}>{iconComponent}</StyledWrapper>
-  );
+const PostTab = ({ iconComponent, iconClickHandler, text }) => {
+    return (
+        <StyledWrapper onClick={iconClickHandler}>
+            {iconComponent}
+            {text}
+        </StyledWrapper>
+    );
 };
 
 export default PostTab;
