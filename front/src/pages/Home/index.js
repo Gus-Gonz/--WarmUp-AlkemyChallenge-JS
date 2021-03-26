@@ -18,8 +18,6 @@ const HomePage = (props) => {
       .catch((error) => console.log(error));
   }, []);
 
-  console.log(props);
-
   return <StyledWrapper>{mappingData(postsList, props.history)}</StyledWrapper>;
 };
 
